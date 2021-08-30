@@ -22,6 +22,7 @@ public class TestBase
     }
 
     public static void OpenUrl(String URL)
+
     {
         driver.get(URL);
     }
