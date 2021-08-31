@@ -4,10 +4,14 @@ import com.Base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Random;
 
 public class Registration extends TestBase {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         firefox_launch();
         OpenUrl("https://demo.opencart.com/");
         OpenRegisterPage();
@@ -24,7 +28,10 @@ public class Registration extends TestBase {
         Reg.click();
     }
 
-    protected static String RandomName(){
+    public static String RandomName() throws IOException {
+        FileOutputStream fis = new FileOutputStream("./src/main/resources/Data.Properties");
+        Properties prop = new Properties();
+
         String SALTCHAR = "abcdeAbcde123";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
@@ -35,11 +42,14 @@ public class Registration extends TestBase {
         }
 
         String saltstr = salt.toString();
+        prop.setProperty("RandomName",saltstr);
+
+        prop.store(fis,null);
+
         return saltstr;
     }
 
-    public static void TC_RegisterAccount()
-    {
+    public static void TC_RegisterAccount() throws IOException {
         String Email = RandomName().concat("@gmail.com");
         String FirstName = RandomName();
 
