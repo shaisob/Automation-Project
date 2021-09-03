@@ -1,23 +1,23 @@
-package com.OpenCart;
+package com.Properties;
 
 import com.Base.TestBase;
+import com.OpenCart.Login;
+import com.OpenCart.Logout;
+import com.OpenCart.Registration;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class EndToEnd extends TestBase {
-
+public class EndToEndProperties extends TestBase {
     public static void main(String[] args) throws IOException {
         firefox_launch();
-       // String Homepage = "https://demo.opencart.com/";
         OpenUrl("https://demo.opencart.com/");
+        RandomEmail();
         Registration.OpenRegisterPage();
         Registration.TC_RegisterAccount_properties();
         Logout.LogOut();
         Login.OpenLoginPage();
-        Login.TC_ValidLogin();
+        LoginWithProperties.TC_valid_dynamic();
         Logout.LogOut();
-
-
+        firefox_close();
     }
 }

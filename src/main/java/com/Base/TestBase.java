@@ -32,7 +32,7 @@ public class TestBase
         driver.get(URL);
     }
 
-    public static String RandomName() throws FileNotFoundException, IOException {
+    public static String RandomEmail() throws FileNotFoundException, IOException {
 
         FileOutputStream fis = new FileOutputStream("./src/main/resources/Data.Properties");
         Properties prop = new Properties();
@@ -46,8 +46,8 @@ public class TestBase
             salt.append(SALTCHAR.charAt(index));
         }
 
-        String saltstr = salt.toString();
-        prop.setProperty("RandomName",saltstr);
+        String saltstr = salt.toString().concat("@gmail.com");
+        prop.setProperty("RandomEmail",saltstr);
         prop.store(fis,null);
 
         return saltstr;
